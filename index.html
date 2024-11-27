@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR визитка с анимацией</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    /* Стиль для тела страницы */
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    /* Стиль для контейнера с QR-кодом */
+    #qrcode {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #222;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Анимация для изменения размера текста */
+    #qrcode::after {
+      content: 'Перейдите на мой сайт: https://example.com';
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 18px;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.3s, opacity 0.3s, transform 0.5s ease-in-out;
+      transform: translateX(-50%) scale(0.8);
+    }
+
+    /* При наведении на QR-код появляется текст с анимацией */
+    #qrcode:hover::after {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) scale(1.1); /* Увеличение текста */
+    }
+
+    /* Визуальные эффекты при наведении на QR-код */
+    #qrcode:hover {
+      transform: scale(1.1); /* Увеличение самого QR-кода */
+    }
+
+    /* Стиль для изображения QR-кода */
+    #qrcode img {
+      width: 200px;
+      height: 200px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Эффект при наведении на QR-код */
+    #qrcode:hover img {
+      transform: scale(1.1); /* Немного увеличиваем изображение */
+    }
+  </style>
+</head>
+<body>
+  <h1>Наведи на QR код, чтобы увидеть мой сайт</h1>
+
+  <!-- Контейнер для QR-кода -->
+  <div id="qrcode"></div>
+
+  <script>
+    const qrData = "https://erikuly.github.io/Portfolio/"; // Указываем ссылку на ваш сайт
+    // Генерация QR-кода и добавление его на страницу
+    QRCode.toDataURL(qrData, function (error, url) {
+      if (error) console.error(error);
+      // Создаем изображение с QR-кодом
+      const img = document.createElement("img");
+      img.src = url;
+      document.getElementById('qrcode').appendChild(img);
+    });
+  </script>
+</body>
+</html>
