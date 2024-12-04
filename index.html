@@ -21,6 +21,24 @@
       text-align: center;
     }
 
+    a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    color: #b74b4b;
+    margin: 5px 15px;
+    transition: 0.2s linear;
+    text-decoration: none;
+  }
+  a:hover {
+    scale: 1.1;
+    color: rgb(255, 0, 0);
+
+    filter: drop-shadow(0 0 5px #b74b4b);
+}
     /* Стиль для контейнера с QR-кодом */
     #qrcode {
       position: relative;
@@ -78,7 +96,7 @@
   </style>
 </head>
 <body>
-  <h1>Наведи на QR код, чтобы увидеть мой сайт</h1>
+  <h1>Наведи на QR код, чтобы увидеть мой <a href="https://erikuly.github.io/Portfolio/">сайт</a></h1>
 
   <!-- Контейнер для QR-кода -->
   <div id="qrcode"></div>
